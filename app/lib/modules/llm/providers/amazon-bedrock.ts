@@ -116,8 +116,10 @@ export default class AmazonBedrockProvider extends BaseProvider {
     const config = this._parseAndValidateConfig(apiKey);
     const bedrock = createAmazonBedrock(config);
 
-    // If we're using Claude 3.5 Sonnet v2 and have an inference profile ARN,
-    // use the inference profile ARN as the model instead of the model ID
+    /*
+     * If we're using Claude 3.5 Sonnet v2 and have an inference profile ARN,
+     * use the inference profile ARN as the model instead of the model ID
+     */
     if (model === 'anthropic.claude-3-5-sonnet-20241022-v2:0' && config.inferenceProfileArn) {
       return bedrock(config.inferenceProfileArn);
     }
